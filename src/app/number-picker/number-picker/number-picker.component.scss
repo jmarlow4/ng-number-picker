@@ -1,0 +1,98 @@
+$height: 48px;
+$width: 48px;
+$font-size: 1.2rem;
+.overlay-container {
+  position: relative;
+}
+.scroll-container {
+  border: none;
+  height: $height * 3;
+  width: $width;
+  text-align: center;
+  padding: $height 0;
+  line-height: $height;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  font-size: $font-size;
+  
+  .number-option {
+    scroll-snap-align: center;
+    height: $height;
+    &:first-child::before {
+      scroll-padding-top: $height;
+    }
+    &:last-child {
+      scroll-padding-bottom: $height;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    display: none;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    display: none;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    display: none;
+  }
+}
+.manual-input {
+  position: absolute;
+  input {
+    border: 1px solid grey;
+    border-radius: 3px;
+    box-sizing: border-box;
+    padding: 0;
+    width: $width;
+    height: $height;
+    text-align: center;
+    font-size: $font-size;
+  }
+}
+.borders {
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+  pointer-events: none;
+  position: absolute;
+  height: $height;
+  width: $width;
+}
+.gradient {
+  pointer-events: none;
+  position: absolute;
+  height: $height * 3;
+  width: $width;
+  background: linear-gradient(
+    0deg
+    , rgba(255,255,255,1) 5%
+    ,rgba(255,255,255,0) 30%
+    , rgba(255,255,255,0) 70%
+    , rgba(255,255,255,1) 95%);
+    &.solid {
+      background: white;
+    }
+}
+
+
+  .click-box {
+    height: $height - 8px;
+    width: $width;
+    position: absolute;
+    // border: 1px solid red;
+    left: 0;
+    &.upper {
+      top: 0;
+    }
+    &.lower {
+      bottom: 0;
+    }
+}

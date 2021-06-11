@@ -1,0 +1,52 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+  <button *ngIf="!addingCustomValue" mat-icon-button (click)="oneDown()">
+    <mat-icon>remove</mat-icon>
+  </button>
+  <div *ngIf="addingCustomValue" [style.width]="'42px'"></div>
+  <div fxLayoutAlign="center center" class="overlay-container">
+    <!-- <div
+      class="clickable-boxes"
+      fxLayout="column"
+      fxLayoutAlign="space-between center"
+    > -->
+    <!-- </div> -->
+    <div class="borders"></div>
+    <div class="gradient" [ngClass]="{ solid: addingCustomValue }"></div>
+    <div class="manual-input">
+      <input
+        [hidden]="!addingCustomValue"
+        type="number"
+        inputmode="decimal"
+        pattern="[0-9]*"
+        maxlength="4"
+        #customValueInput
+        [formControl]="customValCtrl"
+        (click)="customValueInput.select()"
+        [placeholder]="value || 0"
+        (keydown.enter)="customValueInput.blur()"
+      />
+    </div>
+    <div
+      class="scroll-container"
+      #scrollable
+      cdkScrollable
+      fxLayout="column"
+      (click)="manualInput()"
+    >
+      <div id="{{ item }}" class="number-option" *ngFor="let item of items">
+        {{ item }}
+      </div>
+    </div>
+  </div>
+  <button *ngIf="!addingCustomValue" mat-icon-button (click)="oneUp()">
+    <mat-icon>add</mat-icon>
+  </button>
+  <button
+    *ngIf="addingCustomValue"
+    mat-icon-button
+    color="warn"
+    (click)="cancelManualEdit()"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
